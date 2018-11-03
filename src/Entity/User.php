@@ -46,7 +46,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $roles;
+    private $roles="asdasd";
 
     /**
      * @ORM\Column(type="integer", nullable=true)

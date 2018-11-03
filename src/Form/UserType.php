@@ -25,8 +25,7 @@ class UserType extends AbstractType
                 'label'    => 'Is Active?',
                 'required' => false,
             ))
-
-            ->add('Nivel', NumberType::class)
+            ->add('Nivel',NumberType::class)
             ->add('GrupoResolucion')
             ->add('Empleado')
         ;
