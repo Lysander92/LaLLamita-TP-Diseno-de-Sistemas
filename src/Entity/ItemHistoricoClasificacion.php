@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -16,10 +17,6 @@ class ItemHistoricoClasificacion
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $Id_Item;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -31,15 +28,7 @@ class ItemHistoricoClasificacion
      */
     private $Fecha_Hasta;
 
-    /**
-     * @ORM\Column(type="time", nullable=true)
-     */
-    private $Hora_Desde;
 
-    /**
-     * @ORM\Column(type="time", nullable=true)
-     */
-    private $Hora_Hasta;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -66,17 +55,6 @@ class ItemHistoricoClasificacion
         return $this->id;
     }
 
-    public function getIdItem(): ?int
-    {
-        return $this->Id_Item;
-    }
-
-    public function setIdItem(int $Id_Item): self
-    {
-        $this->Id_Item = $Id_Item;
-
-        return $this;
-    }
 
     public function getFechaDesde(): ?\DateTimeInterface
     {
@@ -102,29 +80,6 @@ class ItemHistoricoClasificacion
         return $this;
     }
 
-    public function getHoraDesde(): ?\DateTimeInterface
-    {
-        return $this->Hora_Desde;
-    }
-
-    public function setHoraDesde(?\DateTimeInterface $Hora_Desde): self
-    {
-        $this->Hora_Desde = $Hora_Desde;
-
-        return $this;
-    }
-
-    public function getHoraHasta(): ?\DateTimeInterface
-    {
-        return $this->Hora_Hasta;
-    }
-
-    public function setHoraHasta(?\DateTimeInterface $Hora_Hasta): self
-    {
-        $this->Hora_Hasta = $Hora_Hasta;
-
-        return $this;
-    }
 
     public function getObservacion(): ?string
     {
@@ -172,5 +127,10 @@ class ItemHistoricoClasificacion
         $this->Ticket = $Ticket;
 
         return $this;
+    }
+    public function __construct()
+    {
+        $this->Fecha_Desde= new DateTime();
+
     }
 }

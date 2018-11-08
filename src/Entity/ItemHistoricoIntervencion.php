@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -16,10 +17,7 @@ class ItemHistoricoIntervencion
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $Id_Item;
+
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -31,15 +29,6 @@ class ItemHistoricoIntervencion
      */
     private $Fecha_Hasta;
 
-    /**
-     * @ORM\Column(type="time", nullable=true)
-     */
-    private $Hora_Desde;
-
-    /**
-     * @ORM\Column(type="time", nullable=true)
-     */
-    private $Hora_Hasta;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\EstadoIntervencion")
@@ -51,22 +40,17 @@ class ItemHistoricoIntervencion
      */
     private $User;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Intervencion", inversedBy="HistorialIntervencion")
+     */
+    private $intervencion;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdItem(): ?int
-    {
-        return $this->Id_Item;
-    }
 
-    public function setIdItem(?int $Id_Item): self
-    {
-        $this->Id_Item = $Id_Item;
-
-        return $this;
-    }
 
     public function getFechaDesde(): ?\DateTimeInterface
     {
@@ -92,30 +76,6 @@ class ItemHistoricoIntervencion
         return $this;
     }
 
-    public function getHoraDesde(): ?\DateTimeInterface
-    {
-        return $this->Hora_Desde;
-    }
-
-    public function setHoraDesde(?\DateTimeInterface $Hora_Desde): self
-    {
-        $this->Hora_Desde = $Hora_Desde;
-
-        return $this;
-    }
-
-    public function getHoraHasta(): ?\DateTimeInterface
-    {
-        return $this->Hora_Hasta;
-    }
-
-    public function setHoraHasta(?\DateTimeInterface $Hora_Hasta): self
-    {
-        $this->Hora_Hasta = $Hora_Hasta;
-
-        return $this;
-    }
-
     public function getEstadoIntervencion(): ?EstadoIntervencion
     {
         return $this->Estado_Intervencion;
@@ -136,6 +96,22 @@ class ItemHistoricoIntervencion
     public function setUser(?User $User): self
     {
         $this->User = $User;
+
+        return $this;
+    }
+    public function __construct()
+    {
+        $this->Fecha_Desde=new DateTime();
+    }
+
+    public function getIntervencion(): ?Intervencion
+    {
+        return $this->intervencion;
+    }
+
+    public function setIntervencion(?Intervencion $intervencion): self
+    {
+        $this->intervencion = $intervencion;
 
         return $this;
     }
